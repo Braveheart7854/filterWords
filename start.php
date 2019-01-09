@@ -38,7 +38,9 @@ class start{
         $uri = $request->server['request_uri'];
 
         if ($uri != '/favicon.ico'){
-            $word = $request->post['q'] ?? $request->get['q'];
+            $pword = $request->post['q'] ?? '';
+            $gword = $request->get['q'] ?? '';
+            $word = $pword ? $pword : $gword;
             $res = $this->tree->contain($word);
             if ($res == false){
                 $msg = json_encode(['code'=>10000,'filter'=>'','result'=>$word]);
