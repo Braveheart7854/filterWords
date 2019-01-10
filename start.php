@@ -19,6 +19,15 @@ class start{
     public function startServer(){
         $http = new swoole_http_server("127.0.0.1", 9501);
 
+        $http->set(array(
+            'worker_num' => 4,
+            'max_connection' => 10000,
+            'max_request' => 2000,
+            'daemonize' => false,
+            'dispatch_mode' => 3 ,
+            'backlog' => 128,
+            'log_file' => '/data/log/filterWords.log'
+        ));
         $http->on('WorkerStart',[$this,'workStart']);
         $http->on('request',[$this,'request']);
 
