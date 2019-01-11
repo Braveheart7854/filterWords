@@ -59,6 +59,7 @@ class start{
                 }
                 $msg = json_encode(['code'=>10000,'filter'=>$res,'result'=>$word]);
             }
+            $response->header("server" , "dobest");
             $response->end($msg);
         }
 
